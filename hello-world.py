@@ -5,8 +5,10 @@ from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 
 def print_hello():
-    time.sleep(120)
-    return 'Hello world from first Airflow DAG!'
+    for x in range(10):
+        print(f'Hello world from first Airflow DAG! - {x}')
+        time.sleep(120)
+    return True
 
 dag = DAG('hello_world', description='Hello World DAG',
           schedule_interval='@hourly',
